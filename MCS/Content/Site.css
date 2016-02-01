@@ -1,0 +1,57 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    font-family: 'Righteous', cursive;
+}
+h4{font-family: 'Righteous', cursive;}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.col-sm-4 {
+    padding: 1em;
+    background: #141414;
+    background: rgba(20, 20, 20, 0.7);
+    -ms-border-radius: 0.5em;
+    border-radius: 0.5em;
+}
+/*.row {
+     display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display:         flex;
+}*/
+.emph {
+    padding: 1em;
+    background: #141478;
+    background: rgba(20, 20, 120, 0.5);
+    -ms-border-radius: 0.5em;
+    border-radius: 0.5em;
+}
+h4{ color: lightblue;
+    font-weight: bold;
+}
+
+.mbImage {
+
+    width: 100%;
+    text-align: center;
+
+}

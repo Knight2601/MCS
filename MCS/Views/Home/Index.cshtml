@@ -1,0 +1,110 @@
+﻿@model MCS.Models.GIndexViewModel
+@{
+    ViewBag.Title = "MasterBlockz";
+}
+
+<img src="~/Images/MasterBlockz2.png" class="mbImage" /> <!--<img src="~/Images/Minecraft_logo.svg" />-->
+
+@*<div class="jumbotron">
+    <h1></h1>
+    <p class="lead">We offer 3 servers, Vanilla and Forged.</p> 
+</div>*@
+
+<div class="row">
+    <div class="col-sm-4">
+        <h4>knighty1.ddns.net:25565</h4>
+        <div class="server-status1">
+            <span class="server-online1"></span>
+        </div>
+        <div class="list-inline emph">
+            </div>
+            <div class="list-group-item">
+                <p>Ops:</p>
+                <ul>
+                    @foreach (var s in Model.VOps())
+            {
+                        <li>@s</li>
+                    }
+                </ul>
+            </div>
+
+        </div>
+    <div class="col-sm-4">
+        <h4>knighty1.ddns.net:25566</h4>
+        <div class="server-status2">
+            <span class="server-online2"></span>
+        </div>
+        <div class="list-inline emph">
+            <p>Mods Used:<small>(Click to download)</small>
+            </p>
+
+            @foreach (var s in Model.FilesList())
+            {
+                <a class="alert-link" href="/MCFm/@s[0]">@s[0]</a><br/>
+            }
+        </div>
+        <div class="list-group-item">
+            <p>Ops:</p>
+            <ul>
+                @foreach (var s in Model.MforgeOps())
+            {
+                    <li>@s</li>
+                }
+            </ul>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <h4>knighty1.ddns.net:25567</h4>
+        <div class="server-status3">
+            <span class="server-online3"></span>
+        </div>
+
+
+        <div class="list-inline emph">
+            <p>Mods Used:<small>(Click to download)</small></p>
+
+            @foreach (var s in Model.FilesListJ())
+            {
+                <a class="alert-link"  href="/MCS/@s[0]">@s[0]</a><br/>
+            }
+        </div>
+        <div class="list-group-item">
+            <p>Ops:</p>
+            <ul>
+                @foreach (var s in Model.JoshOps())
+            {
+                    <li>@s</li>
+                }
+            </ul>
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+    function get(porter,x) {
+        MinecraftAPI.getServerStatus('knighty1.ddns.net', {
+            port: porter // optional, only if you need a custom port
+        }, function(err, status) {
+            if (err) {
+                return document.querySelector('.server-status' + x).innerHTML = 'Error loading status';
+            }
+
+            // you can change these to your own message!
+            document.querySelector('.server-online' + x).innerHTML = "Status: " + (status.online ? '<b style="color:lightgreen;">UP</b>' : '<b style="color:red;">DOWN</b>') + "<br>";
+            document.querySelector('.server-online' + x).innerHTML += "<b>" + status.motd.replace(/(§.)/g, '') + "</b><br>";
+            document.querySelector('.server-online' + x).innerHTML += "Players: <b>" + status.players.now.toString() + "/" + status.players.max.toString() + "</b><br>";
+            document.querySelector('.server-online' + x).innerHTML += "Server Version: <b>" + status.server.name + "</b><br>";
+            if (x !== "1") { document.querySelector('.server-online' + x).innerHTML += "You need Forge <b>" + status.server.name + "</b> to play on this server.<br>"; }
+            else { document.querySelector('.server-online' + x).innerHTML += "You need MineCraft <b>" + status.server.name + "</b> to play on this server.<br>"; }
+            return "";
+        });
+    }
+
+    get(25565, "1");
+    get(25566, "2");
+    get(25567, "3");
+
+</script>
